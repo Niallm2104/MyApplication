@@ -199,6 +199,8 @@ import java.util.List;
                     null,                       //group the rows
                     null,                      //filter by row groups
                     null);                      //The sort order
+
+
             int cursorCount = cursor.getCount();
             cursor.close();
             db.close();
@@ -249,6 +251,38 @@ import java.util.List;
             }
 
             return false;
+        }
+
+        public int getUserID(String email){
+            // array of columns to fetch
+            String[] columns = {
+                    COLUMN_USER_ID
+            };
+            SQLiteDatabase db = this.getReadableDatabase();
+            // selection criteria
+            String selection = COLUMN_USER_EMAIL + " = ?";
+
+            // selection arguments
+            String[] selectionArgs = {email};
+
+            // query user table with conditions
+
+            Cursor cursor = db.query(TABLE_USER, //Table to query
+                    columns,                    //columns to return
+                    selection,                  //columns for the WHERE clause
+                    selectionArgs,              //The values for the WHERE clause
+                    null,                       //group the rows
+                    null,                       //filter by row groups
+                    null);                      //The sort order
+
+            cursor.moveToFirst();
+            User user = new User();
+            user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_ID))));
+            cursor.close();
+            db.close();
+
+
+            return user.getId();
         }
     }
 

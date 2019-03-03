@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_graph"
+        android:icon="@drawable/ic_trending_up_black_24dp"
+        android:title="@string/graph_button" />
+
+    <item
+        android:id="@+id/action_calculators"
+        android:icon="@drawable/ic_calculator_24dp"
+        android:title="@string/calculator" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/action_settings" />
+
+</menu>

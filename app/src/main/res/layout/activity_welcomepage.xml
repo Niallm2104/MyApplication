@@ -23,7 +23,7 @@ app:menu="@menu/bottom_navigation_main" />
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:text="Welcome" />
+        android:text="@string/welcome" />
 
     <TextView
         android:id="@+id/details"
@@ -32,7 +32,7 @@ app:menu="@menu/bottom_navigation_main" />
         android:layout_below="@+id/welcome"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Please Enter these Details" />
+        android:text="@string/please_enter_these_details" />
 
     <EditText
         android:id="@+id/weight"

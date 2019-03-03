@@ -3,6 +3,8 @@ package com.example.myapplication.model;
 public class User {
     private int id;
     private String userName;
+    private String password;
+    private String email;
 
     public int getId() {
         return id;
@@ -36,6 +38,5 @@ public class User {
         this.email = email;
     }
 
-    private String password;
-    private String email;
+
 }

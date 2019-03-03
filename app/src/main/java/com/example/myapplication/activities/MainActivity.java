@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             emptyInputEditText();
-            startActivity(new Intent(activity, WelcomePageActivity.class));
+            Intent FirstTimeUser = new Intent(activity, FirstTimeUserActivity.class);
+            FirstTimeUser.putExtra("userId", databaseHelper.getUserID(textInputEditTextEmail.getText().toString().trim()));
+            startActivity(FirstTimeUser);
 
 
         } else {
