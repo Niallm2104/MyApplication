@@ -38,4 +38,92 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/cup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
+    <ImageView
+        android:id="@+id/cup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cup1"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
+    <ImageView
+        android:id="@+id/cup3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cup2"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
+    <ImageView
+        android:id="@+id/cup4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cup3"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
+    <ImageView
+        android:id="@+id/cup5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cup4"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
+    <ImageView
+        android:id="@+id/cup6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cup5"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
+    <ImageView
+        android:id="@+id/cup7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cup6"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
+    <ImageView
+        android:id="@+id/cup8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cup7"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextview"
+        app:srcCompat="@drawable/emptyCup24dp" />
+
 </android.support.constraint.ConstraintLayout>
