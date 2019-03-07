@@ -284,5 +284,38 @@ import java.util.List;
 
             return user.getId();
         }
+
+        public String getUsername(String userID){
+            // array of columns to fetch
+            String[] columns = {
+                    COLUMN_USER_NAME
+            };
+            SQLiteDatabase db = this.getReadableDatabase();
+            // selection criteria
+            String selection = COLUMN_USER_ID + " = ?";
+
+            // selection arguments
+            String[] selectionArgs = {userID};
+
+            // query user table with conditions
+
+            Cursor cursor = db.query(TABLE_USER, //Table to query
+                    columns,                    //columns to return
+                    selection,                  //columns for the WHERE clause
+                    selectionArgs,              //The values for the WHERE clause
+                    null,                       //group the rows
+                    null,                       //filter by row groups
+                    null);                      //The sort order
+
+            cursor.moveToFirst();
+            User user = new User();
+            user.setUserName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_NAME)));
+            cursor.close();
+            db.close();
+
+
+            return user.getUserName();
+
+        }
     }
 

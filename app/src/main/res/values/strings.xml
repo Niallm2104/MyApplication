@@ -38,5 +38,6 @@
     <string name="heightErrorMessage">Please enter your Height in centimetres</string>
     <string name="weightErrorMessage">Please enter your Weight in Kilograms</string>
     <string name="measurementsAdded">Measurements successfully added</string>
+    <string name="many_glasses">How many glasses of water have you drank today?</string>
 </resources>
 
