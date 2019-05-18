@@ -48,7 +48,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp" />
+        app:srcCompat="@drawable/emptycup24dp" />
 
     <ImageView
         android:id="@+id/cup2"
@@ -59,7 +59,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/cup1"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp" />
+        app:srcCompat="@drawable/emptycup24dp" />
 
     <ImageView
         android:id="@+id/cup3"
@@ -70,7 +70,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/cup2"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp" />
+        app:srcCompat="@drawable/emptycup24dp" />
 
     <ImageView
         android:id="@+id/cup4"
@@ -81,7 +81,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/cup3"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp"
+        app:srcCompat="@drawable/emptycup24dp"
         tools:layout_editor_absoluteY="122dp" />
 
     <ImageView
@@ -93,7 +93,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/cup4"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp" />
+        app:srcCompat="@drawable/emptycup24dp" />
 
     <ImageView
         android:id="@+id/cup6"
@@ -104,7 +104,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/cup5"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp" />
+        app:srcCompat="@drawable/emptycup24dp" />
 
     <ImageView
         android:id="@+id/cup7"
@@ -115,7 +115,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/cup6"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp" />
+        app:srcCompat="@drawable/emptycup24dp" />
 
     <ImageView
         android:id="@+id/cup8"
@@ -126,7 +126,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/cup7"
         app:layout_constraintTop_toBottomOf="@+id/cupText"
-        app:srcCompat="@drawable/emptyCup24dp" />
+        app:srcCompat="@drawable/emptycup24dp" />
 
     <TextView
         android:id="@+id/cupText"
@@ -159,29 +159,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cup4" />
-
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Start Pedometre"
-        android:textColor="@color/Black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_steps" />
-
-    <Button
-        android:id="@+id/btn_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Stop Pedometre"
-        android:textColor="@color/Black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_steps" />
 
 </android.support.constraint.ConstraintLayout>

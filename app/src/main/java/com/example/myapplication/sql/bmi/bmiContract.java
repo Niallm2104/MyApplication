@@ -12,6 +12,7 @@ public class bmiContract {
     public static class bmiEntry implements BaseColumns{
         public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
          // java.util.Date
+        public static final String _ID = "id";//TODO
         public static final String TABLE_NAME = "userDetails";
         public static final String COLUMN_NAME_WEIGHT = "weight";
         public static final String COLUMN_NAME_AGE = "age";

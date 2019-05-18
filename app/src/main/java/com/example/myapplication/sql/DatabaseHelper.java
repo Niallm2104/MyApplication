@@ -277,7 +277,7 @@ import java.util.List;
 
             cursor.moveToFirst();
             User user = new User();
-            user.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_ID))));
+            user.setId(cursor.getColumnIndex(COLUMN_USER_ID));
             cursor.close();
             db.close();
 
@@ -285,17 +285,17 @@ import java.util.List;
             return user.getId();
         }
 
-        public String getUsername(String userID){
+        public String getUsername(String email){
             // array of columns to fetch
             String[] columns = {
                     COLUMN_USER_NAME
             };
             SQLiteDatabase db = this.getReadableDatabase();
             // selection criteria
-            String selection = COLUMN_USER_ID + " = ?";
+            String selection = COLUMN_USER_EMAIL + " = ?";
 
             // selection arguments
-            String[] selectionArgs = {userID};
+            String[] selectionArgs = {email};
 
             // query user table with conditions
 
@@ -307,15 +307,18 @@ import java.util.List;
                     null,                       //filter by row groups
                     null);                      //The sort order
 
-            cursor.moveToFirst();
-            User user = new User();
-            user.setUserName(cursor.getString(cursor.getColumnIndex(COLUMN_USER_NAME)));
-            cursor.close();
-            db.close();
+
+                User user = new User();
+                user.setUserName(cursor.getString(0));
+                cursor.close();
+                db.close();
 
 
-            return user.getUserName();
+                return user.getUserName();
+
 
         }
+
+
     }
 

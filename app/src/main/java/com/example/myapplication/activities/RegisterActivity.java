@@ -1,5 +1,6 @@
 package com.example.myapplication.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -43,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().hide();
 
         initViews();
         initListeners();
@@ -140,8 +140,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             databaseHelper.addUser(user);
 
-            // Snack Bar to show success message that record saved successfully
-            Snackbar.make(nestedScrollView, getString(R.string.success_message), Snackbar.LENGTH_LONG).show();
+            Intent intent = new Intent(activity, HomeActivity.class);
+            startActivity(intent);
+
+            //todo check if this goes to welcome page
             emptyInputEditText();
 
 

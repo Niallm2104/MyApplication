@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Login Register</string>
+    <string name="app_name">MyShape</string>
     <string name="text_accounts">All Accounts</string>
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>
@@ -26,6 +26,7 @@
     <string name="age">Age</string>
     <string name="weight">Weight</string>
     <string name="calcbmi">Calculate BMI</string>
+    <string name="dateErrorMessage">Please Enter a valid date</string>
     <string name="welcome">Welcome</string>
     <string name="please_enter_these_details">Please Enter these Details</string>
     <string name="title_activity_first_time_user">FirstTimeUser</string>
@@ -39,5 +40,7 @@
     <string name="weightErrorMessage">Please enter your Weight in Kilograms</string>
     <string name="measurementsAdded">Measurements successfully added</string>
     <string name="many_glasses">How many glasses of water have you drank today?</string>
+    <string name="title_activity_graph">graphActivity</string>
+    <string name="dates_help">Please Enter Dates as requested</string>
 </resources>
 

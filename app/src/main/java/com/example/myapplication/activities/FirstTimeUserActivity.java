@@ -32,8 +32,10 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
     private Equations equations;
     private int userID;
     private ConstraintLayout constaintLayout;
-    private Measurement measurement;
     private bmiDatabaseHelper databaseHelper;
+    private Date today = new Date();
+    private float value = 0, value1 = 0, value2 = 2;
+    private long todayMills = today.getTime();
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -56,18 +58,19 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time_user);
-        Bundle bundle = getIntent().getExtras();
-        if(bundle.getString("userId")!=null){
-           String value  = bundle.getString("userId");
-           userID = Integer.parseInt(value);
-        }else{
-            Intent Login = new Intent(activity, MainActivity.class);
-            startActivity(Login);
-        }
+        Bundle bundle = getIntent().getExtras();        //TODO fix this
+       // if(bundle.getString("userId")!=null){
+       //    String value  = bundle.getString("userId");
+        //   userID = Integer.parseInt(value);
+       // }else{
+       //     Intent Login = new Intent(activity, MainActivity.class);
+       //     startActivity(Login);
+        //}
         initViews();
         initListeners();
         initObjects();
@@ -94,8 +97,7 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
 
     private void initObjects(){
         inputValidation = new InputValidation(activity);
-        equations = new Equations(activity);
-        measurement = new Measurement();
+        equations = new Equations();
         databaseHelper = new bmiDatabaseHelper(activity);
     }
 
@@ -103,32 +105,46 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bmiButton:
-                postDateToSQLite();
-
-                String value = textInputWeight.getText().toString();
-                int weight = Integer.parseInt(value);
-                String value2 = textInputHeight.getText().toString();
-                int height = Integer.parseInt(value2);
-                int bmi = equations.calculateBMI(weight, height);
-                bmiNumber.setText(bmi);
+                postDateToSQLite(); //Todo fix
+                String value = textInputWeight.getText().toString().trim();
+                float weight = Integer.parseInt(value);
+                String value2 = textInputHeight.getText().toString().trim();
+                float height = Integer.parseInt(value2);
+                float bmi = equations.calculateBMI(weight, height);
+                String fBmi = String.valueOf(bmi);
+                bmiNumber.setText(fBmi);
                 break;
         }
 }
 
 
     private boolean checkInputs(){
-        String value = textInputAge.getText().toString().trim();
-        if (value.isEmpty()) {
+        try{String et = textInputAge.getText().toString().trim();
+            value = Float.parseFloat(et);}
+        catch(NumberFormatException exception){
+            Snackbar.make(constaintLayout, R.string.ageErrorMessage, Snackbar.LENGTH_LONG).show();
+        }
+        if (value == 0) {
             Snackbar.make(constaintLayout, R.string.ageErrorMessage, Snackbar.LENGTH_LONG).show();
             return false;
         } else {
-            String height = textInputHeight.getText().toString().trim();
-            if(height.isEmpty()){
+            System.out.println("age ok");
+            try{String height = textInputHeight.getText().toString().trim();
+                value1 = Float.parseFloat(height);}
+                catch(NumberFormatException exception){
+                    Snackbar.make(constaintLayout, R.string.ageErrorMessage, Snackbar.LENGTH_LONG).show();
+                }
+            if(value1 == 0){
                 Snackbar.make(constaintLayout, R.string.heightErrorMessage, Snackbar.LENGTH_LONG).show();
                 return false;
                 }else {
-                String weight = textInputWeight.getText().toString().trim();
-                if (weight.isEmpty()) {
+                System.out.println("height ok");
+                try{String weight = textInputWeight.getText().toString().trim();
+                    value2 = Float.parseFloat(weight);}
+                    catch(NumberFormatException exception){
+                        Snackbar.make(constaintLayout, R.string.ageErrorMessage, Snackbar.LENGTH_LONG).show();
+                    }
+                if (value2 == 0) {
                     Snackbar.make(constaintLayout, R.string.weightErrorMessage, Snackbar.LENGTH_LONG).show();
                     return false;
                 } else return true;
@@ -137,14 +153,15 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
     }
 
     private void postDateToSQLite(){
-        if(checkInputs() == true){
-            measurement.setAge(textInputAge.getText().toString().trim());
-            measurement.setHeight(textInputHeight.getText().toString().trim());
-            measurement.setWeight(textInputWeight.getText().toString().trim());
-            measurement.setId(userID);
-            measurement.setDate(new Date());
+        if(checkInputs()){
+            System.out.println("check inputs working");
+            Measurement measurement = new Measurement();
+            measurement.setAge((int) value);
+            measurement.setHeight((int) value1);
+            measurement.setWeight((int) value2);
+            //measurement.setId(userID);//todo
+            measurement.setDate(todayMills);
             databaseHelper.addMeasurement(measurement);
-            Snackbar.make(constaintLayout, R.string.measurementsAdded, Snackbar.LENGTH_LONG).show();
             Intent intent = new Intent(activity, HomeActivity.class);
             startActivity(intent);
         }

@@ -1,13 +1,15 @@
 package com.example.myapplication.model;
 
+import com.github.mikephil.charting.data.Entry;
+
 import java.util.Date;
 
-public class Measurement { //Date format: yyyy-MM-dd hh:mm:ss.SSS
+public class Measurement extends Entry { //Date format: yyyy-MM-dd hh:mm:ss.SSS
     private static int id;
-    private static String age;
-    private static String weight;
-    private static String height;
-    private static Date date;
+    private static int age;
+    private static int weight;
+    private static int height;
+    private static long date;
 
 
     public static Date getDate(){
@@ -15,7 +17,7 @@ public class Measurement { //Date format: yyyy-MM-dd hh:mm:ss.SSS
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(long date){
         this.date = date;
     }
 
@@ -27,27 +29,27 @@ public class Measurement { //Date format: yyyy-MM-dd hh:mm:ss.SSS
         this.id = id;
     }
 
-    public static String getAge() {
+    public static int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public static String getWeight() {
+    public static int getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public static String getHeight() {
+    public static int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 }

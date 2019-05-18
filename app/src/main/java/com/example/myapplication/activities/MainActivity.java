@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+
 
         initViews();
         initListeners();
@@ -119,9 +119,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             emptyInputEditText();
-            Intent FirstTimeUser = new Intent(activity, FirstTimeUserActivity.class);
-            FirstTimeUser.putExtra("userId", databaseHelper.getUserID(textInputEditTextEmail.getText().toString().trim()));
-            startActivity(FirstTimeUser);
+            Intent HomeActivity = new Intent(activity, HomeActivity.class);
+            HomeActivity.putExtra("userId", databaseHelper.getUserID(textInputEditTextEmail.getText().toString().trim()));
+            HomeActivity.putExtra("email", textInputEditTextEmail.getText().toString().trim());
+            startActivity(HomeActivity);
 
 
         } else {
