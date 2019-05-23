@@ -17,24 +17,25 @@ import android.widget.RadioButton;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.Measurement;
-import com.example.myapplication.sql.bmi.bmiDatabaseHelper;
+import com.example.myapplication.model.sql.bmi.measurementsDatabaseHelper;
 
 import java.util.Calendar;
+import java.util.List;
 
 
 public class GraphInput extends AppCompatActivity {
 
-    private BottomNavigationView navigation;
     private ConstraintLayout constaintLayout;
     private AppCompatActivity activity = this;
     private EditText startDate,endDate;
     private Button inputData;
-    private Intent intent = new Intent(activity, graphActivity1.class);
     private CoordinatorLayout coord;
     private Calendar sCalendar = Calendar.getInstance();
     private Calendar eCalendar = Calendar.getInstance();
-    bmiDatabaseHelper bmiDatabaseHelper;
+    measurementsDatabaseHelper bmiDatabaseHelper;
     private String graphType;
+    private String sdayString, edayString;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -57,6 +58,7 @@ public class GraphInput extends AppCompatActivity {
             return false;
         }
     };
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class GraphInput extends AppCompatActivity {
     }
 
     public void onRadioButtonClicked(View view){
+        this.view = view;
         boolean checked = ((RadioButton) view).isChecked();
 
         switch(view.getId()){
@@ -107,10 +110,10 @@ public class GraphInput extends AppCompatActivity {
     }
 
     private void initObjects(){
-        bmiDatabaseHelper = new bmiDatabaseHelper(activity);
+        bmiDatabaseHelper = new measurementsDatabaseHelper(activity);
     }
 
-    private void checkDateInputs(){
+    private void checkDateInputs() {
         String sDate = startDate.getText().toString().trim();
         String eDate = endDate.getText().toString().trim();
 
@@ -118,7 +121,7 @@ public class GraphInput extends AppCompatActivity {
         String[] startD = sDate.split("-");                         //form an array of strings split using a hyphon this
         String[] endD = eDate.split("-");                           //will give an array with the first value day, second a month, and the third a year
 
-
+    try {
         int sday = Integer.parseInt(startD[0]);
         int sMonth = Integer.parseInt(startD[1]);
         int sYear = Integer.parseInt(startD[2]);
@@ -126,51 +129,49 @@ public class GraphInput extends AppCompatActivity {
         int eMonth = Integer.parseInt(endD[1]);
         int eYear = Integer.parseInt(endD[2]);
 
+        sdayString = sYear + "-" + sMonth + "-" + sday;
+        edayString = eYear + "-" + eMonth + "-" + eDay;
+
         if(checkIfDay(sday) && checkIfMonth(sMonth) && checkIfYear(sYear)){
             sCalendar.set(sYear, sMonth, sday);
         } else Snackbar.make(coord, R.string.dateErrorMessage, Snackbar.LENGTH_LONG).show();
 
 
         if(checkIfDay(eDay) && checkIfMonth(eMonth) && checkIfYear(eYear)){
-            eCalendar.set(eDay, eMonth, eDay);
-            intent.putExtra("eCal", eCalendar);
+            eCalendar.set(eYear, eMonth, eDay);
             checkDates(sCalendar, eCalendar);
         }else Snackbar.make(coord, R.string.dateErrorMessage, Snackbar.LENGTH_LONG).show(); //Todo Snackbar to request correct date
+
+    }catch(NumberFormatException e){
+        Snackbar.make(coord, "Please enter valid dates", Snackbar.LENGTH_LONG);
+    }
 
 
     }
 
     private void addMeasure(){
         Measurement m1 = new Measurement();
-        Calendar c1 = Calendar.getInstance();
-        c1.set(2019, 01,26);
-        long temp = c1.getTimeInMillis();
-        m1.setDate(temp);
-        m1.setAge(22);
+        String c1 = "2019-01-26";
+        m1.setDate(c1);
         m1.setWeight(87);
+        m1.setbfp(14);
 
         Measurement m2 = new Measurement();
-        Calendar c2 = Calendar.getInstance();
-        c2.set(2019, 01,30);
-        temp = c2.getTimeInMillis();
-        m2.setDate(temp);
-        m2.setAge(22);
+        String c2 = "2019-01-30";
+        m2.setDate(c2);
+        m2.setbfp(13);
         m2.setWeight(86);
 
         Measurement m3 = new Measurement();
-        Calendar c3 = Calendar.getInstance();
-        c3.set(2019, 02,05);
-        temp = c3.getTimeInMillis();
-        m3.setDate(temp);
-        m3.setAge(22);
+        String c3 = "2019-02-05";
+        m3.setDate(c3);
+        m3.setbfp(13);
         m3.setWeight(84);
 
         Measurement m4 = new Measurement();
-        Calendar c4 = Calendar.getInstance();
-        c4.set(2019, 02,10);
-        temp = c4.getTimeInMillis();
-        m4.setDate(temp);
-        m4.setAge(22);
+        String c4 = "2019-02-10";
+        m4.setDate(c4);
+        m4.setbfp(12);
         m4.setWeight(83);
 
         bmiDatabaseHelper.addMeasurement(m1);
@@ -200,15 +201,17 @@ public class GraphInput extends AppCompatActivity {
 
     private void checkDates(Calendar s, Calendar e){
         if(s!= null && e != null){
-            Snackbar.make(coord, "this", Snackbar.LENGTH_LONG).show();
-            Intent intent2 = new Intent(activity, graphActivity1.class);
+            Intent intent2 = new Intent(activity, graphActivity.class);
 
             long startDate = sCalendar.getTimeInMillis();
             long endDate = eCalendar.getTimeInMillis();
 
-            intent2.putExtra("sCal", startDate);//TODO
-            intent2.putExtra("eCal", endDate);//TODO
+            intent2.putExtra("sCal", sdayString);//TODO
+            intent2.putExtra("eCal", edayString);//TODO
+            intent2.putExtra("sLongCal", startDate);//TODO
+            intent2.putExtra("eLongCal", endDate);//TODO
             intent2.putExtra("type", graphType);
+            List<Measurement> list = bmiDatabaseHelper.getWeightReadings(sdayString, edayString);
             startActivity(intent2);                    //if the calendar objects have been initialised go to display graphs
         }
     }

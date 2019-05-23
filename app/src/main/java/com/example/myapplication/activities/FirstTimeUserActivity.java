@@ -13,13 +13,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.myapplication.Helpers.Equations;
-import com.example.myapplication.Helpers.InputValidation;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Helpers.Equations;
+import com.example.myapplication.model.Helpers.InputValidation;
 import com.example.myapplication.model.Measurement;
-import com.example.myapplication.sql.bmi.bmiDatabaseHelper;
-
-import java.util.Date;
+import com.example.myapplication.model.sql.bmi.measurementsDatabaseHelper;
 
 public class FirstTimeUserActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,14 +26,10 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
     private EditText textInputAge, textInputHeight, textInputWeight;
     private AppCompatButton bmi;
     private BottomNavigationView navigation;
-    private InputValidation inputValidation;
     private Equations equations;
-    private int userID;
     private ConstraintLayout constaintLayout;
-    private bmiDatabaseHelper databaseHelper;
-    private Date today = new Date();
     private float value = 0, value1 = 0, value2 = 2;
-    private long todayMills = today.getTime();
+    measurementsDatabaseHelper databaseHelper;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -96,9 +90,9 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initObjects(){
-        inputValidation = new InputValidation(activity);
+        InputValidation inputValidation = new InputValidation(activity);
         equations = new Equations();
-        databaseHelper = new bmiDatabaseHelper(activity);
+        databaseHelper = new measurementsDatabaseHelper(activity);
     }
 
     @Override
@@ -159,8 +153,6 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
             measurement.setAge((int) value);
             measurement.setHeight((int) value1);
             measurement.setWeight((int) value2);
-            //measurement.setId(userID);//todo
-            measurement.setDate(todayMills);
             databaseHelper.addMeasurement(measurement);
             Intent intent = new Intent(activity, HomeActivity.class);
             startActivity(intent);

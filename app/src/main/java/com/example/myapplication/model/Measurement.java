@@ -2,22 +2,27 @@ package com.example.myapplication.model;
 
 import com.github.mikephil.charting.data.Entry;
 
-import java.util.Date;
-
 public class Measurement extends Entry { //Date format: yyyy-MM-dd hh:mm:ss.SSS
     private static int id;
     private static int age;
-    private static int weight;
+    private static double weight;
     private static int height;
-    private static long date;
+    private static String date;
+    private static double bmi;
+    private static double bfp;
+
+    public static double getbmi(){return bmi;}
+    public void setbmi(double temp){bmi = temp;}
+
+    public static double getbfp(){return bfp;}
+    public void setbfp(double temp){bfp = temp;}
 
 
-    public static Date getDate(){
-        final Date date = new Date();
+    public static String getDate(){
         return date;
     }
 
-    public void setDate(long date){
+    public void setDate(String date){
         this.date = date;
     }
 
@@ -37,11 +42,11 @@ public class Measurement extends Entry { //Date format: yyyy-MM-dd hh:mm:ss.SSS
         this.age = age;
     }
 
-    public static int getWeight() {
+    public static double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

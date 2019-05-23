@@ -8,20 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activities.BFPcalc"></activity>
+        <activity android:name=".activities.addMeasurements"></activity>
+        <activity android:name=".activities.BFPcalc" />
         <activity android:name=".activities.Calculators" />
         <activity
-            android:name=".activities.graphActivity1"
+            android:name=".activities.graphActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.GraphInput"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".graphDates"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activities.HomeActivity"
-            android:label="@string/title_activity_home"/>
+            android:label="@string/title_activity_home" />
         <activity
             android:name=".activities.FirstTimeUserActivity"
             android:label="@string/title_activity_first_time_user" />
@@ -36,12 +35,6 @@
         </activity>
         <activity
             android:name=".activities.RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.UsersListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.WelcomePageActivity"
             android:screenOrientation="portrait" />
     </application>
 

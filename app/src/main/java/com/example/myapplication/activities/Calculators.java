@@ -3,7 +3,6 @@ package com.example.myapplication.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -15,11 +14,8 @@ import com.example.myapplication.R;
 
 public class Calculators extends AppCompatActivity {
 
-    private TextView textView;
     private Button bfp;
     private Button bmi;
-    private BottomNavigationView navigation;
-    private ConstraintLayout constaintLayout;
     private AppCompatActivity activity = this;
 
     @Override
@@ -54,7 +50,7 @@ public class Calculators extends AppCompatActivity {
     private void initViews() {
         bfp = findViewById(R.id.BFPbutton);
         bmi = findViewById(R.id.BMI);
-        textView = findViewById(R.id.pleaseChoose);
+        TextView textView = findViewById(R.id.pleaseChoose);
     }
 
     private void initListeners(){

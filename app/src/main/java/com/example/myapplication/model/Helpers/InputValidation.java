@@ -1,4 +1,4 @@
-package com.example.myapplication.Helpers;
+package com.example.myapplication.model.Helpers;
 
 import android.app.Activity;
 import android.content.Context;

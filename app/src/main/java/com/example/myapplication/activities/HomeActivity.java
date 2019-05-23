@@ -13,22 +13,17 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.User;
-import com.example.myapplication.sql.DatabaseHelper;
+import com.example.myapplication.model.sql.DatabaseHelper;
 
 import java.util.Calendar;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
 
-    private static final String TEXT_WELCOME_USER = "Hello ";
-    private int userID;
-    private String userName;
     private BottomNavigationView navigation;
     private final AppCompatActivity activity = HomeActivity.this;
-    private ImageView cup1,cup2,cup3,cup4,cup5,cup6,cup7,cup8;
-    private TextView welcomeTextview, TvSteps;
-    private Button BtnStart,BtnStop;
-    private int numSteps;
+    private ImageView cup1,cup2,cup3,cup4,cup5,cup6,cup7,cup8; //TODO 4 cups instead of 8
+    private Button addMeasurements;
     private User user;
     private ImageView[] cups;
     private int iterator = 0;
@@ -73,7 +68,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         initObjects();
         Bundle bundle = getIntent().getExtras();
         if(bundle.containsKey("userId")){
-            userID = bundle.getInt("userId");
+            int userID = bundle.getInt("userId");
             user.setId(userID);
             email = bundle.getString("email");
         }else{
@@ -89,7 +84,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initViews(){
         navigation = findViewById(R.id.navigation);
-        welcomeTextview = findViewById(R.id.welcomeTextview);
+        TextView welcomeTextview = findViewById(R.id.welcomeTextview);
 
         cup1 = findViewById(R.id.cup1);         //Initialise cup images
         cup2 = findViewById(R.id.cup2);
@@ -100,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         cup7 = findViewById(R.id.cup7);
         cup8 = findViewById(R.id.cup8);
 
-        TvSteps = findViewById(R.id.tv_steps);  //Initialise Step counter buttons
+        addMeasurements = findViewById(R.id.add_measurements);
     }
 
     private void initListeners(){
@@ -113,6 +108,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         cup6.setOnClickListener(this);
         cup7.setOnClickListener(this);
         cup8.setOnClickListener(this);
+        addMeasurements.setOnClickListener(this);
+
     }
 
     private void initObjects(){
@@ -150,6 +147,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.cup8:
                 cupChanger();
                 break;
+            case R.id.add_measurements:
+                Intent intent = new Intent(activity, addMeasurements.class);
+                startActivity(intent);
+                break;
+
         }
 
     }

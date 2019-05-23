@@ -9,17 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.myapplication.Helpers.Equations;
 import com.example.myapplication.R;
+import com.example.myapplication.model.Helpers.Equations;
 
 public class BFPcalc extends AppCompatActivity {
 
-    private TextView hipText,thighText, abdominalText, tricepText, welcomeText;
     private EditText hipReading, thighReading, abdominalReading, tricepReading, maleFemale, age;
     private boolean male;
     private Button calculate;
     private Equations calculator;
-    private double hip,thigh,tricep,abdominal;
     private String BFP;
     private View CoordinatorLayout;
     private BottomNavigationView navigation;
@@ -60,11 +58,11 @@ public class BFPcalc extends AppCompatActivity {
     }
 
     private void initViews(){
-        hipText = findViewById(R.id.HipText);
-        thighText = findViewById(R.id.thighText);
-        abdominalText = findViewById(R.id.AbdominalText);
-        tricepText = findViewById(R.id.tricepText);
-        welcomeText = findViewById(R.id.bfpcalctextView);
+        TextView hipText = findViewById(R.id.HipText);
+        TextView thighText = findViewById(R.id.thighText);
+        TextView abdominalText = findViewById(R.id.AbdominalText);
+        TextView tricepText = findViewById(R.id.tricepText);
+        TextView welcomeText = findViewById(R.id.bfpcalctextView);
         calculate = findViewById(R.id.calculateBFP);
         hipReading = findViewById(R.id.HipReading);
         thighReading = findViewById(R.id.thighReading);

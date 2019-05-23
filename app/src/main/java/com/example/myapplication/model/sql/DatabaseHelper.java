@@ -1,4 +1,4 @@
-package com.example.myapplication.sql;
+package com.example.myapplication.model.sql;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,12 +28,12 @@ import java.util.List;
         private static final String COLUMN_USER_EMAIL = "user_email";
         private static final String COLUMN_USER_PASSWORD = "user_password";
 
-        // create table com.example.myapplication.sql query
+        // create table com.example.myapplication.model.sql query
         private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_USER_NAME + " TEXT,"
                 + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_PASSWORD + " TEXT" + ")";
 
-        // drop table com.example.myapplication.sql query
+        // drop table com.example.myapplication.model.sql query
         private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
 
         /**
@@ -102,7 +102,7 @@ import java.util.List;
 
             // query the user table
             /**
-             * Here query function is used to fetch records from user table this function works like we use com.example.myapplication.sql query.
+             * Here query function is used to fetch records from user table this function works like we use com.example.myapplication.model.sql query.
              * SQL query equivalent to this query function is
              * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
              */
@@ -188,7 +188,7 @@ import java.util.List;
 
             // query user table with condition
             /**
-             * Here query function is used to fetch records from user table this function works like we use com.example.myapplication.sql query.
+             * Here query function is used to fetch records from user table this function works like we use com.example.myapplication.model.sql query.
              * SQL query equivalent to this query function is
              * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
              */

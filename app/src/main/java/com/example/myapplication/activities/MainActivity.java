@@ -11,9 +11,9 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-import com.example.myapplication.Helpers.InputValidation;
 import com.example.myapplication.R;
-import com.example.myapplication.sql.DatabaseHelper;
+import com.example.myapplication.model.Helpers.InputValidation;
+import com.example.myapplication.model.sql.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private final AppCompatActivity activity = MainActivity.this;
