@@ -10,6 +10,7 @@ public class Measurement extends Entry { //Date format: yyyy-MM-dd hh:mm:ss.SSS
     private static String date;
     private static double bmi;
     private static double bfp;
+    private static int activityLevels;
 
     public static double getbmi(){return bmi;}
     public void setbmi(double temp){bmi = temp;}
@@ -57,4 +58,10 @@ public class Measurement extends Entry { //Date format: yyyy-MM-dd hh:mm:ss.SSS
     public void setHeight(int height) {
         this.height = height;
     }
+
+    public int getActivityLevels() {
+        return activityLevels;
+    }
+
+    public void setActivityLevels(int activityLevels){this.activityLevels = activityLevels;}
 }

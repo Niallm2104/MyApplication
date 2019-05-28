@@ -9,10 +9,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.myapplication.model.Measurement;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class measurementsDatabaseHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "measurements.db";
     public static final String TABLE_NAME = "measurements";
 
@@ -21,7 +22,7 @@ public class measurementsDatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE measurements (age INT, height INT, weight DOUBLE,bmi DOUBLE,bfp DOUBLE,date NOT NULL)";
+            "CREATE TABLE measurements (age INT, height INT, weight DOUBLE, activitylevels INT, bmi DOUBLE,bfp DOUBLE,date NOT NULL)";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -43,6 +44,12 @@ public class measurementsDatabaseHelper extends SQLiteOpenHelper {
     public void addMeasurement(Measurement measurement) {
         SQLiteDatabase db = this.getWritableDatabase();
         Measurement measurement1 = measurement;
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+
+        String date = year + "-" + month + "-" + day;
 
         ContentValues values = new ContentValues();
         values.put("age", measurement1.getAge());
@@ -50,7 +57,8 @@ public class measurementsDatabaseHelper extends SQLiteOpenHelper {
         values.put("weight", measurement1.getWeight());
         values.put("bmi", measurement1.getbmi());
         values.put("bfp", measurement1.getbfp());
-        values.put("date", measurement1.getDate());
+        values.put("activitylevels", measurement1.getActivityLevels());
+        values.put("date", date);
 
         db.insert("measurements", null, values);
         db.close();

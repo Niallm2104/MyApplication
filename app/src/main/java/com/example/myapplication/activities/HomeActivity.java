@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Helpers.Equations;
 import com.example.myapplication.model.User;
 import com.example.myapplication.model.sql.DatabaseHelper;
+import com.example.myapplication.model.sql.bmi.measurementsDatabaseHelper;
 
 import java.util.Calendar;
 
@@ -31,7 +33,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private int dayOfTheYear = calendar.get(Calendar.DAY_OF_YEAR);
     private int lastLoginDay;
     private DatabaseHelper databaseHelper;
+    private Equations EQ;
     private String email;
+    private measurementsDatabaseHelper mHelp;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener //TODO add to all
                 = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,14 +71,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         initListeners();
         initObjects();
         Bundle bundle = getIntent().getExtras();
-        if(bundle.containsKey("userId")){
-            int userID = bundle.getInt("userId");
-            user.setId(userID);
-            email = bundle.getString("email");
-        }else{
-            Intent Login = new Intent(activity, MainActivity.class);
-            startActivity(Login);
-        }
         //todo userName = databaseHelper.getUsername(email);
         //welcomeTextview.setText(TEXT_WELCOME_USER + userName);
         onNewDay();
@@ -116,8 +112,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         user = new User();
         databaseHelper = new DatabaseHelper(activity);
         cups = new ImageView[]{cup1,cup2,cup3,cup4,cup5,cup6,cup7,cup8};
+        mHelp = new measurementsDatabaseHelper(activity);
+        EQ = new Equations();
 
     }
+
+   /*private void calcBMR(){
+            int age = mHelp.getAge();
+            int height = mHelp.getHeight();
+            int weight = mHelp.getWeight();         //TODO BMR Calculator
+            int activityLevels = mHelp.getActivityLevels();
+            boolean maleF = mHelp.getGender();
+            EQ.calculateBMR(age,weight,height,activityLevels,maleF);
+    }*/
 
 
     @Override

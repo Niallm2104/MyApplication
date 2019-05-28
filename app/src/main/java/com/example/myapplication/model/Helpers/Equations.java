@@ -42,7 +42,7 @@ public class Equations {
     public int calculateBMR(int age, int weight,int height, int activityLevels, boolean maleF){ //BMR calculator
         double BMRhelp;
 
-        if(maleF == true){
+        if(maleF){
             BMRhelp = (weight * 10) +(6.25 * height) - (5 * age) + 5;
             } else BMRhelp = (weight * 10) +(6.25 * height) - (5 * age) - 161;
 

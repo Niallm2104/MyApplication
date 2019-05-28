@@ -2,13 +2,11 @@ package com.example.myapplication.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,16 +21,17 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
 
     private final AppCompatActivity activity = FirstTimeUserActivity.this;
     private TextView mTextMessage,bmiNumber;
-    private EditText textInputAge, textInputHeight, textInputWeight;
+    private EditText textInputAge, textInputHeight, textInputWeight, textInputActivityLevels;
     private AppCompatButton bmi;
     private BottomNavigationView navigation;
     private Equations equations;
     private ConstraintLayout constaintLayout;
-    private float value = 0, value1 = 0, value2 = 2;
+    private float value = 0, value1 = 0, value2 = 2, value3 = 1;
+
     measurementsDatabaseHelper databaseHelper;
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+  /*  private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -50,7 +49,7 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
             }
             return false;
         }
-    };
+    };*/
 
 
     @Override
@@ -80,12 +79,13 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
         textInputWeight = findViewById(R.id.weight);
         bmi = findViewById(R.id.bmiButton);
         bmiNumber = findViewById(R.id.bmi);
+        textInputActivityLevels = findViewById(R.id.activity_levels);
 
     }
 
     private void initListeners(){
         bmi.setOnClickListener(this);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+       // navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
 
@@ -100,10 +100,10 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
         switch (v.getId()) {
             case R.id.bmiButton:
                 postDateToSQLite(); //Todo fix
-                String value = textInputWeight.getText().toString().trim();
-                float weight = Integer.parseInt(value);
-                String value2 = textInputHeight.getText().toString().trim();
-                float height = Integer.parseInt(value2);
+                value = Float.parseFloat(textInputWeight.getText().toString().trim());
+                float weight = value;
+                value2 = Float.parseFloat(textInputHeight.getText().toString().trim());
+                float height = value2;
                 float bmi = equations.calculateBMI(weight, height);
                 String fBmi = String.valueOf(bmi);
                 bmiNumber.setText(fBmi);
@@ -140,10 +140,18 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
                     }
                 if (value2 == 0) {
                     Snackbar.make(constaintLayout, R.string.weightErrorMessage, Snackbar.LENGTH_LONG).show();
-                    return false;
+                    return false;} else{
+                    try{String activityLevels = textInputActivityLevels.getText().toString().trim();
+                        value3 = Float.parseFloat(activityLevels);}
+                    catch(NumberFormatException exception){
+                        Snackbar.make(constaintLayout, R.string.ageErrorMessage, Snackbar.LENGTH_LONG).show();
+                    }
+                    if (value3 == 0) {
+                        Snackbar.make(constaintLayout, R.string.weightErrorMessage, Snackbar.LENGTH_LONG).show();
+                        return false;
                 } else return true;
             }
-        }
+        }}
     }
 
     private void postDateToSQLite(){
@@ -153,6 +161,7 @@ public class FirstTimeUserActivity extends AppCompatActivity implements View.OnC
             measurement.setAge((int) value);
             measurement.setHeight((int) value1);
             measurement.setWeight((int) value2);
+            measurement.setActivityLevels((int) value3);
             databaseHelper.addMeasurement(measurement);
             Intent intent = new Intent(activity, HomeActivity.class);
             startActivity(intent);

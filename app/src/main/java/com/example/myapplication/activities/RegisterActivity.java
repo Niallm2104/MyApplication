@@ -140,7 +140,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             databaseHelper.addUser(user);
 
-            Intent intent = new Intent(activity, HomeActivity.class);
+            Intent intent = new Intent(activity, FirstTimeUserActivity.class);
             startActivity(intent);
 
             //todo check if this goes to welcome page
